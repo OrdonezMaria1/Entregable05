@@ -1,29 +1,51 @@
-# Lista de nombres de estudiantes
+# === Actividad 3: Listas y Diccionarios Relacionados ===
+
+# Lista inicial de estudiantes
 estudiantes = ["Ana", "Luis", "Sofía", "Carlos"]
-print("Lista de estudiantes:")
-for estudiante in estudiantes:
-    print(estudiante)
 
-# Diccionario de información de contacto
-contacto = {"nombre": "María", "correo": "maria@example.com"}
-print("Información de contacto:")
-for clave, valor in contacto.items():
-    print(clave, ":", valor)
+# Diccionario: cada estudiante con su correo
+contactos = {
+    "Ana": "ana@example.com",
+    "Luis": "luis@example.com",
+    "Sofía": "sofia@example.com",
+    "Carlos": "carlos@example.com"
+}
 
-# Script para agregar elementos a una lista
-nueva_lista = []
 while True:
-    dato = input("Agrega un elemento a la lista (o escribe 'salir' para terminar): ")
-    if dato.lower() == "salir":
+    print("\n=== MENÚ ACTIVIDAD 3 ===")
+    print("1. Mostrar estudiantes y sus correos")
+    print("2. Agregar nuevo estudiante")
+    print("3. Actualizar correo de un estudiante")
+    print("4. Salir")
+
+    opcion = input("Elige una opción (1-4): ")
+
+    if opcion == "1":
+        print("\nLista de estudiantes con correos:")
+        for estudiante in estudiantes:
+            print(estudiante, ":", contactos[estudiante])
+
+    elif opcion == "2":
+        nuevo = input("Ingresa el nombre del nuevo estudiante: ")
+        correo = input(f"Ingresa el correo de {nuevo}: ")
+        
+        # Agregar a la lista y al diccionario
+        estudiantes.append(nuevo)
+        contactos[nuevo] = correo
+        print(f"{nuevo} fue agregado con el correo {correo}.")
+
+    elif opcion == "3":
+        nombre = input("¿De qué estudiante quieres actualizar el correo?: ")
+        if nombre in contactos:
+            nuevo_correo = input(f"Ingresa el nuevo correo de {nombre}: ")
+            contactos[nombre] = nuevo_correo
+            print(f"Correo de {nombre} actualizado a {nuevo_correo}.")
+        else:
+            print("Ese estudiante no existe en la lista.")
+
+    elif opcion == "4":
+        print("¡Saliendo de la Actividad 3!")
         break
-    nueva_lista.append(dato)
 
-print("Lista final:", nueva_lista)
-
-# Script para actualizar un diccionario
-persona = {"nombre": "Pedro", "correo": "pedro@gmail.com"}
-print("Diccionario inicial:", persona)
-clave = input("¿Qué quieres actualizar (nombre/correo)?: ")
-nuevo_valor = input(f"Ingresa el nuevo valor para {clave}: ")
-persona[clave] = nuevo_valor
-print("Diccionario actualizado:", persona)
+    else:
+        print("Opción no válida, intenta de nuevo.")
